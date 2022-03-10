@@ -145,3 +145,10 @@ sessions/
 .idea
 tests/test_log.txt
 tests/test_extras.py
+
+# Antlr
+antlr-*.jar
+*.interp
+*.tokens
+VyxalLexer.py
+VyxalParser.py
