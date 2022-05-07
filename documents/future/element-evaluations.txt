@@ -1,0 +1,36 @@
+hyper-neutrino's evaluations on existing elements
+
+mostly considering how often they'll be used, how easily replaceable they are by
+other things, and if I feel that they are really necessary to keep around.
+
+I recommend removing the following:
+- × (Asterisk Literal) - it just seems kind of pointless and overspecialized TBH, just use \*
+- ¤ (Empty String) - just doesn't seem all that valuable, just use ``
+- is ċ (Not One) that useful?
+- is ₂ (Is Even) that useful when parity exists?
+- is ₃ (Divisible By three) even useful besides FizzBuzz?
+- is ₅ (Divisible By Five) even useful besides FizzBuzz?
+- ǒ (Modulo 3) - is this needed
+
+
+I'm not too sure if the following are that important/needed:
+- « (Base Compressed String)
+- some of the ranges could possibly be removed although it'll cost more bytes in some cases which might not be worth it
+- I doubt triplicate is that popular but it's probably a pretty core feature to have in a stack-based language
+- push -1 is potentially not all that useful but also it could probably be made obsolete with different number syntax much like how Jelly does it
+- ð (Space) - could just be `\ ` so I'm not sure it warrants the byte
+- ¶ (Newline) - could just be \[NL] so I'm not sure it warrants the byte
+- if the register is not popular you could free some bytes by just deleting it
+- is the global array used much?
+- FizzBuzz constants could be removed but I assume you don't want to
+- some of the k-constants might not be all that useful but I don't think there's a need to remove them
+- same goes for ∆-digraphs, the quadratic/polynomial solvers seem potentially not that useful (though they'd be really difficult to implement without built-ins so it could be useful)
+- the bracketify ø-digraphs might not be necessary
+
+
+I propose potential changes to the following:
+- max/min by tail - could that just be max/min by key being reverse instead? I feel like that'd be more useful
+
+
+Any I haven't listed here I either missed or I think they're necessary or at
+least important enough that they shouldn't really be considered for deletion.
