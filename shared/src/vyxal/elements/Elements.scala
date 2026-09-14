@@ -1111,14 +1111,21 @@ object Elements:
           case _ => throw InvalidListOverloadException("⎀", b, "Number")
         }
     },
-    "◲" ->
-      fullToImpl(
-        Monad,
-        x =>
-          ListHelpers.mergeInfLists(
-            ListHelpers.prefixes(x.itr).map(b => ListHelpers.suffixes(b.itr))
-          ),
-      ),
+    addPart("◲", Monad, false) {
+      case a: VNum => ListHelpers
+          .mergeInfLists(
+            ListHelpers.prefixes(a.itr).map(b => ListHelpers.suffixes(b.itr))
+          )
+          .map(s => MiscHelpers.eval(s.mkString))
+      case VStr(a) => ListHelpers
+          .mergeInfLists(
+            ListHelpers.prefixes(a.itr).map(b => ListHelpers.suffixes(b.itr))
+          )
+          .map(s => s.mkString)
+      case a: VList => ListHelpers.mergeInfLists(
+          ListHelpers.prefixes(a.itr).map(b => ListHelpers.suffixes(b.itr))
+        )
+    },
     addPart("⊢", Dyad, false) {
       case (date: VDate, VStr(tz)) => date.withZone(tz)
       case (number: VNum, base: VNum) => NumberHelpers.toBase(number, base)
