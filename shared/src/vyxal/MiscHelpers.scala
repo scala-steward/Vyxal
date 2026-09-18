@@ -117,6 +117,12 @@ object MiscHelpers:
     else if VNum.NumRegex.matches(StringHelpers.stripLeft(s, "0")) then VNum(s)
     else if s.matches("""("(?:[^"\\]|\\.)*["])""") then
       s.substring(1, s.length - 1)
+    else if s(0) == 'λ' then
+      val tokens = Lexer.lex(s)
+      val tempContext = Context(globals = Globals(settings = ctx.settings))
+      tempContext.settings = tempContext.settings.useMode(EndPrintMode.None)
+      Interpreter.execute(Lexer.sbcsify(tokens))(using tempContext)
+      tempContext.peek
     else if isList(s) then
       val tokens = Lexer.lexLiterate(s)
       val tempContext = Context(globals = Globals(settings = ctx.settings))
